@@ -129,7 +129,7 @@ for epoch in range(epochs):
         current_batch = x.size(0)
         x_hat, z_e, z_q = model(x)
         # 重建loss：整个任务自回归的loss
-        # 自回归的意思：模型输入是x，模型的label也是x。模型输出x_hat要拟合输入x，拟合自己，所以是自回归。
+        # AE自编码器：无监督，模型的输出拟合模型的输入。
         recon_loss = criterion(x_hat, x)
         vq_loss = criterion(z_q, z_e.detach())
         commit_loss = criterion(z_e, z_q.detach())
